@@ -1,0 +1,1 @@
+myStr.o: ../myStr.c
