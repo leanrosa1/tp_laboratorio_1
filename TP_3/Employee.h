@@ -27,6 +27,9 @@ int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas);
 int employee_setSueldo(Employee* this,int sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 
+void employee_printList(LinkedList* listOfEmployees);
+void employee_print (Employee* pEmployee);
 
 int employee_findById(LinkedList* listOfEmployees, int id);
+int employee_sort(void* firstItem, void* secondItem);
 #endif // employee_H_INCLUDED

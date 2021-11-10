@@ -6,7 +6,7 @@
 C_SRCS += \
 ../Controller.c \
 ../Employee.c \
-../files.c \
+../idFactory.c \
 ../input.c \
 ../main.c \
 ../menu.c \
@@ -16,7 +16,7 @@ C_SRCS += \
 OBJS += \
 ./Controller.o \
 ./Employee.o \
-./files.o \
+./idFactory.o \
 ./input.o \
 ./main.o \
 ./menu.o \
@@ -26,7 +26,7 @@ OBJS += \
 C_DEPS += \
 ./Controller.d \
 ./Employee.d \
-./files.d \
+./idFactory.d \
 ./input.d \
 ./main.d \
 ./menu.d \

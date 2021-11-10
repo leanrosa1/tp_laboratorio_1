@@ -111,7 +111,7 @@ int myStrIsOnlyText (char myStr[], int* result)
 
 int myStrIsOnlyNumbers (char myStr[], int* result)
 {
-	int status = -1;
+	int status = 1;
 	int index = 0;
 	int isNumber = 1;
 
@@ -124,7 +124,7 @@ int myStrIsOnlyNumbers (char myStr[], int* result)
 				if (myStr[index] != 32)
 				{
 					isNumber = -1;
-					status = 1;
+					status = -1;
 					break;
 				}
 			}

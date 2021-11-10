@@ -194,19 +194,89 @@ void employee_delete(Employee* this)
 {
 	if (this != NULL)
 	{
-
-		/*id = employee_getId(this, &id);
-		employeeIndex = employee_findById(listOfEmployees, id);
-
-		if (employeeIndex > -1)
-		{
-			ll_remove(listOfEmployees, employeeIndex);
-		}*/
 		free(this);
 	}
 }
 
+void employee_printList(LinkedList* listOfEmployees)
+{
+	int listLen;
+	int index;
+	Employee* pEmployee;
+	int id;
+	char name[NAME_LEN];
+	int hours;
+	int salary;
 
+	listLen = ll_len(listOfEmployees);
+
+	for (index = 0; index < listLen; index++)
+	{
+		pEmployee = ll_get(listOfEmployees, index);
+
+		if (pEmployee != NULL)
+		{
+			employee_getId(pEmployee, &id);
+			employee_getNombre(pEmployee, name);
+			employee_getHorasTrabajadas(pEmployee, &hours);
+			employee_getSueldo(pEmployee, &salary);
+
+			printf("\n---------------EMPLEADO---------------");
+			printf("\nID: %d", id);
+			printf("\nNOMBRE: %s", name);
+			printf("\nHORAS TRABAJADAS: %d", hours);
+			printf("\nSUELDO: %d", salary);
+			printf("\n--------------------------------------");
+		}
+	}
+}
+
+void employee_print (Employee* pEmployee)
+{
+	int id;
+	char name[NAME_LEN];
+	int hours;
+	int salary;
+
+	if (pEmployee != NULL)
+	{
+		employee_getId(pEmployee, &id);
+		employee_getNombre(pEmployee, name);
+		employee_getHorasTrabajadas(pEmployee, &hours);
+		employee_getSueldo(pEmployee, &salary);
+
+		printf("\n---------------EMPLEADO---------------");
+		printf("\nID: %d", id);
+		printf("\nNOMBRE: %s", name);
+		printf("\nHORAS TRABAJADAS: %d", hours);
+		printf("\nSUELDO: %d", salary);
+		printf("\n--------------------------------------");
+	}
+}
+
+int employee_sort(void* firstItem, void* secondItem)
+{
+	int value = 0;
+	Employee* firstEmployee;
+	Employee* secondEmployee;
+	int firstSalary;
+	int secondSalary;
+	firstEmployee = (Employee*) firstItem;
+	secondEmployee = (Employee*) secondItem;
+
+	if (employee_getSueldo(firstEmployee, &firstSalary) == 1 && employee_getSueldo(secondEmployee, &secondSalary) == 1)
+	{
+		if (firstSalary > secondSalary)
+		{
+			value = 1;
+		}
+		else if (secondSalary > firstSalary)
+		{
+			value = -1;
+		}
+	}
+	return value;
+}
 
 
 

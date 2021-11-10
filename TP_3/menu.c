@@ -20,7 +20,7 @@ void menu_printMainMenu (void)
 	printf("\n4. MODIFICAR EMPLEADO");
 	printf("\n5. BAJA DE EMPLEADO");
 	printf("\n6. LISTAR EMPLEADOS");
-	printf("\n7. ORDENAR EMPLEADOS");
+	printf("\n7. ORDENAR EMPLEADOS POR SALARIO");
 	printf("\n8. GUARDAR EMPLEADOS MODO TEXTO");
 	printf("\n9. GUARDAR EMPLEADOS MODO BINARIO");
 	printf("\n10. SALIR");
@@ -49,3 +49,4 @@ int menu_selectAnOption (int* selectedOption, int minValue, int maxValue)
 	}
 	return status;
 }
+
