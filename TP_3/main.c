@@ -30,7 +30,6 @@ int main()
 
     LinkedList* employeesList = ll_newLinkedList();
     int maximumId = idFactory_getMaximumId("idFactory.txt", "data.csv");
-    printf("\nEl id maximo es %d", maximumId);
 
     do{
     	menu_printMainMenu();
