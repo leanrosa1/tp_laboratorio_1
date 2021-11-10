@@ -60,9 +60,9 @@ int main()
 					}
 					else
 					{
-						if (controller_CheckIfBinaryFileExists("probando.txt") == 1)
+						if (controller_CheckIfBinaryFileExists("binaryData.txt") == 1)
 						{
-							if (controller_loadFromBinary("probando.txt", employeesList) != 1)
+							if (controller_loadFromBinary("binaryData.txt", employeesList) != 1)
 							{
 								printf("\nOcurrio un error");
 							}
@@ -149,7 +149,7 @@ int main()
 				case 9:
 					if (hasEmployees == 1 && employeesWereImported == 1)
 					{
-						if (controller_saveAsBinary("probando.txt", employeesList) != 1)
+						if (controller_saveAsBinary("binaryData.txt", employeesList) != 1)
 						{
 							printf("\nOcurrio un error");
 						}
@@ -158,7 +158,7 @@ int main()
 					{
 						if (controller_ConfirmLossEmployeesInFile() == 1)
 						{
-							if (controller_saveAsBinary("probando.txt", employeesList) != 1)
+							if (controller_saveAsBinary("binaryData.txt", employeesList) != 1)
 							{
 								printf("\nOcurrio un error");
 							}
