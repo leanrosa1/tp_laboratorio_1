@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/LinkedList.h"
+#include "../testing/inc/Employee.h"
 
 
 static Node* getNode(LinkedList* this, int nodeIndex);
@@ -552,34 +553,90 @@ LinkedList* ll_clone(LinkedList* this)
  */
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
-	int index;
-	int limit;
-	int swapped;
 	int status = -1;
-	void* pointer1;
-	void* pointer2;
+	int hasChanges = 1;
+	int index;
+	int size;
+	void* current;
+	void* following;
+	int orderResult;
 
-	if (this != NULL && order > 0 && order < 2 && pFunc != NULL)
+	if (this != NULL && pFunc != NULL && (order == 0 || order == 1))
 	{
 		status = 0;
-		limit = ll_len(this);
-		do
-		{
-			swapped = 0;
-			for (index = 0; index < limit; index++)
-			{
-				pointer1 = ll_get(this, index);
-				pointer2= ll_get(this, index + 1);
+		size = ll_len(this);
 
-				if (pFunc(pointer1, pointer2) == 1)
+		while (hasChanges)
+		{
+			hasChanges = 0;
+
+			for (index = 0; index < size - 1; index ++)
+			{
+				current = ll_get(this, index);
+				following = ll_get(this, index + 1);
+				orderResult = pFunc(current, following);
+
+				if ((order == 1 && orderResult == 1) || (order == 0 && orderResult == -1))
 				{
-					ll_set(this, index, pointer2);
-					ll_set(this, index + 1, pointer1);
-					swapped = 1;
+					ll_set(this, index, following);
+					ll_set(this, index + 1, current);
+					hasChanges = 1;
 				}
 			}
+		}
+	}
 
-		} while (swapped);
+	return status;
+}
+
+int ll_map(LinkedList* this, void (*pFunc)(void*))
+{
+	int status = -1;
+	int size;
+	int index;
+	void* pAux;
+
+	if (this != NULL && pFunc != NULL)
+	{
+		status = 0;
+		size = ll_len(this);
+
+		for (index = 0; index < size; index++)
+		{
+			pAux = ll_get(this, index);
+
+			if (pAux != NULL)
+			{
+				pFunc(pAux);
+			}
+		}
+	}
+	return status;
+}
+
+
+int ll_filter(LinkedList* this, int (*pFunc)(void*))
+{
+	int status = -1;
+	int critery;
+	void* pAux;
+	int index;
+
+	if(this != NULL && pFunc != NULL)
+	{
+		for(index = ll_len(this)-1; index >= 0; index--)
+		{
+			pAux = ll_get(this, index);
+
+			if(pAux != NULL)
+			{
+				critery = pFunc(pAux);
+				if(critery == 0)
+				{
+					status = ll_remove(this, index);
+				}
+			}
+		}
 	}
 	return status;
 }
